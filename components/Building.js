@@ -3,24 +3,29 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Pressable,
-  FlatList,
+  ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 import * as Animatable from "react-native-animatable";
 import { serverClient } from "../Constant";
+import BuildingList from "./Lists/BuildingList";
 const Building = (props) => {
-  const [buildings, setBuildings] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
-      .get(`${serverClient}/api/v1/buildings`)
+      .get(`${serverClient}/api/v1/projects`)
       .then((response) => {
-        setBuildings(response.data.data);
+        setProjects(response.data.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err.response));
-  }, []);
+      .catch((err) => console.log(err.response), setLoading(false));
+  }, [props.route.params]);
+
   return (
     <Animatable.View animation="fadeInDownBig" style={styles.center}>
       <Text
@@ -35,26 +40,22 @@ const Building = (props) => {
       >
         ALL BUILDINGS LIST:
       </Text>
-      <FlatList
-        nestedScrollEnabled
-        data={buildings}
-        keyExtractor={(item) => item.id}
-        renderItem={(el) => {
-          return (
-            <View style={styles.item}>
-              <TouchableOpacity
-                onPress={() => {
-                  props.navigation.navigate("Unit", {
-                    id: el.item._id,
-                  });
-                }}
-              >
-                <Text>{el.item.buildingNumber}</Text>
-              </TouchableOpacity>
+      {loading ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="#3A4F7A" />
+        </View>
+      ) : (
+        <ScrollView style={{ marginHorizontal: 20 }}>
+          {projects.map((project) => (
+            <View key={project._id} style={{ marginVertical: 10 }}>
+              <BuildingList navigation={props.navigation} data={project} />
             </View>
-          );
-        }}
-      />
+          ))}
+        </ScrollView>
+      )}
+
       <Text style={{ fontSize: 20, fontWeight: "200", borderBottomWidth: 1 }}>
         Click the button for create new Building
       </Text>
@@ -108,21 +109,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
-  },
-  item: {
-    // backgroundColor: "grey",
-    padding: "auto",
-    marginVertical: 5,
-    marginHorizontal: 20,
-    height: 50,
-    width: 400,
-    aspectRatio: 7,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-    borderRadius: 20,
-    borderColor: "grey",
-    borderWidth: 1,
   },
 });

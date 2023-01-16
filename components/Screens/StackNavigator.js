@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import homeScreen from "../../components/Home";
+import SplashScreen from "../Screens/SplashScreen";
 import projectScreen from "../../components/Project";
 import buildingScreen from "../../components/Building";
 import loginScreen from "../../components/Login";
@@ -17,15 +18,17 @@ import UnitLandryUpdateAfterScreen from "../UnitLandryUpdateAfter";
 import UnitLandryUpdateBeforeScreen from "../UnitLandryUpdateBefore";
 import UnitEnsuitUpdateBeforeScreen from "../UnitEnsuitUpdateBefore";
 import UnitEnsuitUpdateAfterScreen from "../UnitEnsuitUpdateAfter";
+import BuildingListScreen from "../Lists/BuildingList";
 import UnitViewDetailScreen from "../UnitViewDetail";
 import UserContext from "../../Contexts/UserContext";
+import TabNavigatorScreen from "../Screens/TabNavigtor";
+import unitLandScreen from "../UnitLand";
 const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
-  const state = useContext(UserContext);
+  // if (state.isLoading === true) return <SplashScreen />;
   return (
     <Stack.Navigator
-      initialRouteName="Home"
       screenOptions={{
         headerStyle: {
           backgroundColor: "#36393e",
@@ -35,11 +38,9 @@ const MainStackNavigator = () => {
         headerBackTitle: "Back",
       }}
     >
-      {state.isLoggedIn ? (
-        <Stack.Screen name="Home" component={homeScreen} />
-      ) : (
-        <Stack.Screen name="Login" component={loginScreen} />
-      )}
+      <Stack.Screen name="Home" component={homeScreen} />
+      <Stack.Screen name="Login" component={loginScreen} />
+      <Stack.Screen name="Unit" component={unitScreen} />
     </Stack.Navigator>
   );
 };
@@ -71,11 +72,14 @@ const ThirdStackNavigator = () => {
       }}
     >
       <Stack.Screen name="Building" component={buildingScreen} />
+      <Stack.Screen name="Building List" component={BuildingListScreen} />
       <Stack.Screen name="Unit" component={unitScreen} />
+      <Stack.Screen name="Units" component={unitLandScreen} />
       <Stack.Screen name="Building Add" component={buildingAddScreen} />
       <Stack.Screen name="UnitDetails" component={unitDetailsScreen} />
       <Stack.Screen name="Unit Add" component={UnitAddScreen} />
       <Stack.Screen name="Unit View" component={UnitViewDetailScreen} />
+
       <Stack.Screen
         name="Unit bathroom update before"
         component={UnitBathroomUpdateBeforeScreen}
@@ -111,5 +115,38 @@ const ThirdStackNavigator = () => {
     </Stack.Navigator>
   );
 };
-
-export { MainStackNavigator, SecondStackNavigator, ThirdStackNavigator };
+const StackNavigator = () => {
+  const state = useContext(UserContext);
+  return (
+    <>
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: "#36393e",
+          },
+          headerTintColor: "white",
+          headerBackTitle: "Back",
+        }}
+      >
+        {state.isLoggedIn ? (
+          <Stack.Screen name="Home" component={TabNavigatorScreen} />
+        ) : (
+          <>
+            <Stack.Screen name="Login" component={loginScreen} />
+          </>
+        )}
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        {/* <Stack.Screen name="Login" component={loginScreen} /> */}
+        {/* <Stack.Screen name="Home" component={TabNavigatorScreen} /> */}
+      </Stack.Navigator>
+    </>
+  );
+};
+export {
+  MainStackNavigator,
+  SecondStackNavigator,
+  ThirdStackNavigator,
+  StackNavigator,
+};

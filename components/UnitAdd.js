@@ -11,6 +11,7 @@ const UnitAdd = (props) => {
   const [unitNumber, setUnitNumber] = useState();
   const [building, setBuilding] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     axios
@@ -133,7 +134,11 @@ const UnitAdd = (props) => {
         building: buildingSlice,
       })
       .then((response) => {
-        alert("Data Saved");
+        setRefresh(true),
+          props.navigation.navigate("Unit", {
+            refresh: refresh,
+          }),
+          alert("Data Saved");
       })
       .catch((err) => console.log(err));
   };
@@ -157,7 +162,6 @@ const UnitAdd = (props) => {
               setSelectedValue({ ...selectedValue, building: value });
             }}
           />
-          {console.log(buildingSlice)}
           <FormText
             label="Enter unit's Floor: "
             placeholder="Please enter floor number"

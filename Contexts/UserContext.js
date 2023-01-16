@@ -9,9 +9,12 @@ export const UserStore = (props) => {
   const [token, setToken] = useState("");
   const [userName, setUserName] = useState(null);
   const [role, setRole] = useState(null);
-
+  const [isLoading, setIsloading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   //Login Function
   const login = (email, password) => {
+    setLoading(true);
     axios
       .post(`${serverClient}/api/v1/users/login`, {
         email: email,
@@ -22,6 +25,7 @@ export const UserStore = (props) => {
         setUserName(result.data.user.fName);
         setRole(result.data.user.role);
         setIsLoggedIn(true);
+        setLoading(false);
 
         AsyncStorage.setItem("token", result.data.token)
           .then((result) => {
@@ -36,9 +40,11 @@ export const UserStore = (props) => {
       })
       .catch((err) => {
         alert(err);
+        setError(err);
         setIsLoggedIn(false);
         setUserName(null);
         setRole(null);
+        setLoading(false);
       });
   };
   return (
@@ -53,6 +59,12 @@ export const UserStore = (props) => {
         setUserName,
         role,
         setRole,
+        isLoading,
+        setIsloading,
+        loading,
+        setLoading,
+        error,
+        setError,
       }}
     >
       {props.children}

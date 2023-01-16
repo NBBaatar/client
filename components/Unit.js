@@ -5,21 +5,31 @@ import {
   TouchableOpacity,
   Pressable,
   FlatList,
+  ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as Animatable from "react-native-animatable";
 import { serverClient } from "../Constant";
+import UnitList from "./Lists/UnitList";
 const Unit = (props) => {
-  const [unit, setUnit] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${serverClient}/api/v1/units`)
-      .then((response) => {
-        setUnit(response.data.data);
-      })
-      .catch((err) => console.log(err.response));
-  }, []);
+  const [buildings, setBuildings] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(
+    () => {
+      axios
+        .get(`${serverClient}/api/v1/buildings/${props.route.params.id}/unit`)
+        .then((response) => {
+          setBuildings(response.data.data);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err.response), setLoading(false));
+    },
+    [props.route.params],
+    [props.route.params.id]
+  );
   return (
     <Animatable.View animation="fadeInDownBig" style={styles.center}>
       <Text
@@ -34,29 +44,41 @@ const Unit = (props) => {
       >
         ALL RELATED BUILDING UNITS LIST:
       </Text>
-      <FlatList
-        nestedScrollEnabled
-        data={unit}
-        keyExtractor={(item) => item.id}
-        renderItem={(el) => {
-          return (
-            <View style={styles.item}>
-              <TouchableOpacity
-                onPress={() => {
-                  props.navigation.navigate("UnitDetails", {
-                    id: el.item._id,
-                    units: unit,
-                  });
-                }}
-              >
-                {el.item.units.map((ele) => (
-                  <Text>{ele.unitNumber}</Text>
-                ))}
-              </TouchableOpacity>
+      {buildings.length > 0 ? (
+        <ScrollView
+          style={{
+            marginHorizontal: 20,
+          }}
+        >
+          {buildings.map((building) => (
+            <View
+              key={building._id}
+              style={{
+                marginVertical: 10,
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <UnitList navigation={props.navigation} data={building} />
             </View>
-          );
-        }}
-      />
+          ))}
+        </ScrollView>
+      ) : (
+        <View
+          style={{
+            marginVertical: 10,
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 24, fontWeight: "400" }}>
+            There are no related Units in this Building...
+          </Text>
+        </View>
+      )}
+
       <Text style={{ fontSize: 20, fontWeight: "200", borderBottomWidth: 1 }}>
         Click the button for create new Unit
       </Text>

@@ -17,6 +17,7 @@ const BuildingAdd = (props) => {
   const [buildingNumber, setBuildingNumber] = useState();
   const [project, setProject] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [refresh, setRefresh] = useState(false);
   const ProjectSlice = Object.values(selectedValue);
   useEffect(() => {
     axios
@@ -27,7 +28,7 @@ const BuildingAdd = (props) => {
       .catch((err) => console.log(err.response));
   }, []);
 
-  const saveHandle = (value, navigation, props) => {
+  const saveHandle = () => {
     axios
       .post(`${serverClient}/api/v1/buildings`, {
         project: ProjectSlice,
@@ -39,10 +40,14 @@ const BuildingAdd = (props) => {
         ],
       })
       .then((response) => {
-        Alert.alert("Data saved!"), console.log(response);
+        setRefresh(true),
+          props.navigation.navigate("Building", {
+            refresh: refresh,
+          }),
+          alert("Data saved!");
       })
       .catch((err) => {
-        Alert.alert(err);
+        alert(err);
       });
   };
 
@@ -50,7 +55,6 @@ const BuildingAdd = (props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <Animatable.View animation="fadeInUpBig">
         <Text style={styles.textHeader}>CREATE NEW BUILDING</Text>
-
         <ScrollView>
           <View
             style={{

@@ -1,7 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { MainStackNavigator } from "./components/Screens/StackNavigator";
+import { StackNavigator } from "./components/Screens/StackNavigator";
 // import { SafeAreaView } from "react-native";
 import BottomTabNavigator from "./components/Screens/TabNavigtor";
 import loginScreen from "./components/Login";
@@ -10,7 +10,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <UserStore>
-        <BottomTabNavigator />
+        <StackNavigator />
+        {/* <BottomTabNavigator /> */}
       </UserStore>
       {/* <MainStackNavigator /> */}
     </NavigationContainer>

@@ -13,19 +13,23 @@ import { serverClient } from "../Constant";
 export default function ProjectAdd(props) {
   const [name, setName] = useState();
   const [location, setLocation] = useState();
+  const [refresh, setRefresh] = useState(false);
 
-  const saveHandle = (value, navigation) => {
+  const saveHandle = () => {
     axios
       .post(`${serverClient}/api/v1/projects`, {
         name: name,
         location: location,
       })
-      .then(
-        (result) => alert("Saved"),
+      .then((result) => {
         setName(null),
-        setLocation(null),
-        props.navigation.navigate("Home")
-      )
+          setLocation(null),
+          setRefresh(true),
+          props.navigation.navigate("Project", {
+            refresh: refresh,
+          }),
+          alert("Saved");
+      })
       .catch((err) => alert(err));
   };
 

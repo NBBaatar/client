@@ -16,12 +16,12 @@ import UserContext from "../Contexts/UserContext";
 const loginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
   const [spinner, setSpinner] = useState(false);
 
   //UserContext
   const state = useContext(UserContext);
   async function login() {
+    setSpinner(true);
     if (email.lenght === 0) {
       Alert.alert("Enter your Email.");
       return;
@@ -30,46 +30,64 @@ const loginScreen = (props) => {
       Alert.alert("Enter your password.");
       return;
     }
+
     state.login(email, password);
     props.navigation.navigate("Home");
+    if (state.error) {
+      setSpinner(false);
+      console.log("error at: ", state.error);
+      setEmail(null);
+      setPassword(null);
+    }
   }
   return (
-    <View style={{ backgroundColor: "#3c3d3c", flex: 1 }}>
-      {spinner && (
-        <ActivityIndicator
-          size="large"
-          color="#ff4e47"
-          style={{ marginLeft: "auto", marginRight: "auto" }}
-        />
+    <View
+      style={{
+        backgroundColor: "#3c3d3c",
+        flex: 1,
+      }}
+    >
+      {spinner ? (
+        <View
+          style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
+        >
+          <ActivityIndicator size="large" color="#ff4e47" />
+        </View>
+      ) : (
+        <>
+          <View style={styles.imgContainer}>
+            <Image
+              style={styles.image}
+              source={require("../images/logo.jpg")}
+            />
+          </View>
+
+          <Text style={styles.text_header}></Text>
+
+          <TextInput
+            {...props}
+            style={styles.textInput}
+            autoCapitalize="none"
+            placeholder="Email: "
+            placeholderTextColor="white"
+            value={email}
+            onChangeText={(value) => setEmail(value)}
+          />
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry={true}
+            autoCapitalize="none"
+            placeholder="Password: "
+            placeholderTextColor="white"
+            value={password}
+            onChangeText={(value) => setPassword(value)}
+          />
+
+          <Pressable style={styles.button} onPress={login}>
+            <Text style={styles.text_button}>Login</Text>
+          </Pressable>
+        </>
       )}
-      <View style={styles.imgContainer}>
-        <Image style={styles.image} source={require("../images/logo.jpg")} />
-      </View>
-
-      <Text style={styles.text_header}></Text>
-
-      <TextInput
-        {...props}
-        style={styles.textInput}
-        autoCapitalize="none"
-        placeholder="Email: "
-        placeholderTextColor="white"
-        value={email}
-        onChangeText={(value) => setEmail(value)}
-      />
-      <TextInput
-        style={styles.textInput}
-        secureTextEntry={true}
-        autoCapitalize="none"
-        placeholder="Password: "
-        placeholderTextColor="white"
-        value={password}
-        onChangeText={(value) => setPassword(value)}
-      />
-
-      <Pressable style={styles.button} onPress={login}>
-        <Text style={styles.text_button}>Login</Text>
-      </Pressable>
     </View>
   );
 };

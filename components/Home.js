@@ -1,165 +1,191 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { Avatar, Card, IconButton } from "react-native-paper";
 import { serverClient } from "../Constant";
-let user = "Baataraa";
-let totalProjects = 11;
-let totalBuildings = 123;
-let totallUnits = 1290;
+import UserContext from "../Contexts/UserContext";
 
 function Home({ navigation }) {
-  const [projects, setProjects] = useState({});
+  const [projects, setProjects] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [units, setUnits] = useState([]);
   const [user, setUser] = useState([]);
-  const [token, setToken] = useState();
   const [loading, setLoading] = useState(false);
+  const state = useContext(UserContext);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${serverClient}/api/v1/projects`)
       .then((response) => {
         setProjects(response.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => console.log(err.response), setLoading(false));
   }, []);
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${serverClient}/api/v1/buildings`)
       .then((response) => {
         setBuildings(response.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => console.log(err.response), setLoading(false));
   }, []);
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${serverClient}/api/v1/units`)
       .then((response) => {
         setUnits(response.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => console.log(err.response), setLoading(false));
   }, []);
 
   return (
     <View style={styles.center}>
-      {user && (
-        <Text style={{ marginBottom: "2%", fontWeight: "bold", fontSize: 20 }}>
-          Hello. How are you?: {user}!!
-        </Text>
-      )}
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          marginVertical: 5,
-          marginHorizontal: 10,
-          paddingVertical: 8,
-          paddingHorizontal: 16,
-        }}
-      >
-        <ScrollView
-          horizontal
-          style={{
-            paddingTop: 45,
-            paddingLeft: 20,
-            paddingBottom: 45,
-            marginBottom: 45,
-            marginTop: 45,
-          }}
+      {loading ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
+          <ActivityIndicator size="large" color="#3A4F7A" />
+        </View>
+      ) : (
+        <>
+          {user && (
+            <Text
+              style={{ marginBottom: "2%", fontWeight: "200", fontSize: 30 }}
+            >
+              Hello. How are you?: {state.userName} !
+            </Text>
+          )}
           <View
             style={{
-              paddingHorizontal: 3,
-              marginHorizontal: 5,
-              marginBottom: 5,
-              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              marginVertical: 5,
+              marginHorizontal: 10,
+              paddingVertical: 8,
+              paddingHorizontal: 16,
+              marginTop: "30%",
             }}
           >
-            <Card>
-              <Card.Title
-                style={{ width: 250, height: 150, justifyContent: "center" }}
-                title="All Projects"
-                subtitle={projects.count}
-                left={(props) => (
-                  <Avatar.Icon {...props} icon="clipboard-file" />
-                )}
-                right={(props) => (
-                  <IconButton
-                    {...props}
-                    icon="chevron-right"
-                    onPress={() => {
-                      navigation.navigate("Project");
+            <ScrollView
+              horizontal
+              style={{
+                paddingTop: 45,
+                paddingLeft: 20,
+                paddingBottom: 45,
+                marginBottom: 45,
+                marginTop: 45,
+              }}
+            >
+              <View
+                style={{
+                  paddingHorizontal: 3,
+                  marginHorizontal: 5,
+                  marginBottom: 5,
+                  marginTop: 5,
+                }}
+              >
+                <Card>
+                  <Card.Title
+                    style={{
+                      width: 250,
+                      height: 150,
+                      justifyContent: "center",
                     }}
+                    title="All Projects"
+                    subtitle={<Text>{projects.count}</Text>}
+                    left={(props) => (
+                      <Avatar.Icon {...props} icon="clipboard-file" />
+                    )}
+                    right={(props) => (
+                      <IconButton
+                        {...props}
+                        icon="chevron-right"
+                        onPress={() => {
+                          navigation.navigate("Project");
+                        }}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Card>
-          </View>
-          <View
-            style={{
-              paddingHorizontal: 3,
-              marginHorizontal: 5,
-              marginBottom: 5,
-              marginTop: 5,
-            }}
-          >
-            <Card>
-              <Card.Title
-                style={{ width: 250, height: 150, justifyContent: "center" }}
-                title="All Buildings"
-                subtitle={buildings.count}
-                left={(props) => <Avatar.Icon {...props} icon="domain" />}
-                right={(props) => (
-                  <IconButton
-                    {...props}
-                    icon="chevron-right"
-                    onPress={() => {
-                      navigation.navigate("Building");
+                </Card>
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: 3,
+                  marginHorizontal: 5,
+                  marginBottom: 5,
+                  marginTop: 5,
+                }}
+              >
+                <Card>
+                  <Card.Title
+                    style={{
+                      width: 250,
+                      height: 150,
+                      justifyContent: "center",
                     }}
+                    title="All Buildings"
+                    subtitle={<Text>{buildings.count}</Text>}
+                    left={(props) => <Avatar.Icon {...props} icon="domain" />}
+                    right={(props) => (
+                      <IconButton
+                        {...props}
+                        icon="chevron-right"
+                        onPress={() => {
+                          navigation.navigate("Building");
+                        }}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Card>
-          </View>
-          <View
-            style={{
-              paddingHorizontal: 3,
-              marginHorizontal: 5,
-              marginBottom: 5,
-              marginTop: 5,
-            }}
-          >
-            <Card>
-              <Card.Title
-                style={{ width: 250, height: 150, justifyContent: "center" }}
-                title="All Units"
-                subtitle={units.count}
-                left={(props) => (
-                  <Avatar.Icon {...props} icon="office-building-marker" />
-                )}
-                right={(props) => (
-                  <IconButton
-                    {...props}
-                    icon="chevron-right"
-                    onPress={() => {
-                      alert("You Pressed Units!!!");
+                </Card>
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: 3,
+                  marginHorizontal: 5,
+                  marginBottom: 5,
+                  marginTop: 5,
+                }}
+              >
+                <Card>
+                  <Card.Title
+                    style={{
+                      width: 250,
+                      height: 150,
+                      justifyContent: "center",
                     }}
+                    title="All Units"
+                    subtitle={<Text>{units.count}</Text>}
+                    left={(props) => (
+                      <Avatar.Icon {...props} icon="office-building-marker" />
+                    )}
+                    right={(props) => (
+                      <IconButton
+                        {...props}
+                        icon="chevron-right"
+                        onPress={() => {
+                          navigation.navigate("Unit");
+                        }}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Card>
+                </Card>
+              </View>
+            </ScrollView>
           </View>
-        </ScrollView>
-      </View>
-
-      <Pressable
-        style={styles.button}
-        title="Check List"
-        onPress={() => navigation.navigate("Login")}
-      >
-        <Text style={styles.text_button}>Go to check list</Text>
-      </Pressable>
+        </>
+      )}
     </View>
   );
 }

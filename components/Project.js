@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 import * as Animatable from "react-native-animatable";
@@ -13,14 +14,18 @@ import { serverClient } from "../Constant";
 
 const ProjectTest = (props) => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${serverClient}/api/v1/projects`)
       .then((response) => {
         setProjects(response.data.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err.response));
-  }, []);
+      .catch((err) => console.log(err.response), setLoading(false));
+  }, [props.route.params]);
   return (
     <Animatable.View animation="fadeInDownBig" style={styles.center}>
       <Text
@@ -35,26 +40,35 @@ const ProjectTest = (props) => {
       >
         ALL PROJECTS LIST:
       </Text>
-      <FlatList
-        nestedScrollEnabled
-        data={projects}
-        keyExtractor={(item) => item.id}
-        renderItem={(el) => {
-          return (
-            <View style={styles.item}>
-              <TouchableOpacity
-                onPress={() => {
-                  props.navigation.navigate("Building", {
-                    id: el.item._id,
-                  });
-                }}
-              >
-                <Text>{el.item.name}</Text>
-              </TouchableOpacity>
-            </View>
-          );
-        }}
-      />
+      {loading ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="#3A4F7A" />
+        </View>
+      ) : (
+        <FlatList
+          nestedScrollEnabled
+          data={projects}
+          keyExtractor={(item) => item.id}
+          renderItem={(el) => {
+            return (
+              <View style={styles.item}>
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("Building", {
+                      id: el.item._id,
+                    });
+                  }}
+                >
+                  <Text>{el.item.name}</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
+      )}
+
       <Text style={{ fontSize: 20, fontWeight: "200", borderBottomWidth: 1 }}>
         Click the button for create new Project
       </Text>

@@ -1,4 +1,5 @@
-rootProject.name = 'client'
+// rootProject.name = 'client'
+rootProject.name = 'LVL33 CC'
 
 apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle");
 useExpoModules()
