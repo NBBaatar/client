@@ -6,16 +6,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import * as Animatable from "react-native-animatable";
-import { serverClient } from "../../Constant";
 import UnitEach from "../UnitEach";
 const UnitList = (props) => {
   const [units, setUnits] = useState([props.data]);
 
   return (
     <View style={{ marginTop: 20 }}>
-      <Text style={{ fontSize: 24, fontWeight: "300" }}>Unit List:</Text>
       <FlatList
         horizontal
         data={units}

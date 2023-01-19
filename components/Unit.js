@@ -17,19 +17,15 @@ const Unit = (props) => {
   const [buildings, setBuildings] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(
-    () => {
-      axios
-        .get(`${serverClient}/api/v1/buildings/${props.route.params.id}/unit`)
-        .then((response) => {
-          setBuildings(response.data.data);
-          setLoading(false);
-        })
-        .catch((err) => console.log(err.response), setLoading(false));
-    },
-    [props.route.params],
-    [props.route.params.id]
-  );
+  useEffect(() => {
+    axios
+      .get(`${serverClient}/api/v1/buildings/${props.route.params.id}/unit`)
+      .then((response) => {
+        setBuildings(response.data.data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err.response), setLoading(false));
+  }, [props.route.params]);
   return (
     <Animatable.View animation="fadeInDownBig" style={styles.center}>
       <Text
@@ -44,6 +40,7 @@ const Unit = (props) => {
       >
         ALL RELATED BUILDING UNITS LIST:
       </Text>
+      <Text style={{ fontSize: 24, fontWeight: "300" }}>Unit List:</Text>
       {buildings.length > 0 ? (
         <ScrollView
           style={{

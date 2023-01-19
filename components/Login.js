@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
   // container: {},
   imgContainer: {
     flexDirection: "row",
+    marginVertical: 40,
+    marginHorizontal: 5,
   },
   image: {
     resizeMode: "contain",

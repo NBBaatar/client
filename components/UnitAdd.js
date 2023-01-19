@@ -124,6 +124,259 @@ const UnitAdd = (props) => {
                 ],
               },
             ],
+            framingDoor: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireBox: false,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            framingSteel: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            electrical: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            plumbing: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            ac: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            fireSprinkler: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            fireCable: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            dryFireCable: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            windows: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            plasterBoard: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            tiles: [
+              {
+                kitchen: [
+                  {
+                    statusOf: noValue,
+                    reason: noValue,
+                    fireRating: noValue,
+                    photo: [
+                      {
+                        fileName: noPhoto,
+                        uri: noValue,
+                      },
+                    ],
+                  },
+                ],
+                bathroom: [
+                  {
+                    statusOf: noValue,
+                    reason: noValue,
+                    fireRating: noValue,
+                    photo: [
+                      {
+                        fileName: noPhoto,
+                        uri: noValue,
+                      },
+                    ],
+                  },
+                ],
+                ensuite: [
+                  {
+                    statusOf: noValue,
+                    reason: noValue,
+                    fireRating: noValue,
+                    photo: [
+                      {
+                        fileName: noPhoto,
+                        uri: noValue,
+                      },
+                    ],
+                  },
+                ],
+                laundry: [
+                  {
+                    statusOf: noValue,
+                    reason: noValue,
+                    fireRating: noValue,
+                    photo: [
+                      {
+                        fileName: noPhoto,
+                        uri: noValue,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+            kitchen: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            wardrobe: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            carpet: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            paint: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            shelfAnglesBriekWork: [
+              {
+                statusOf: noValue,
+                reason: noValue,
+                fireRating: noValue,
+                photo: [
+                  {
+                    fileName: noPhoto,
+                    uri: noValue,
+                  },
+                ],
+              },
+            ],
+            defects: noValue,
           },
         ],
         statusOf: [

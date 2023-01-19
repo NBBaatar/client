@@ -23,6 +23,26 @@ import UnitViewDetailScreen from "../UnitViewDetail";
 import UserContext from "../../Contexts/UserContext";
 import TabNavigatorScreen from "../Screens/TabNavigtor";
 import unitLandScreen from "../UnitLand";
+import ACScreen from "../AC";
+import CarpetScreen from "../Carpet";
+import DefectsScreen from "../Defects";
+import PaintScreen from "../Paints";
+import WindowsScreen from "../Windows";
+import KitchenScreen from "../Kitchen";
+import TilesScreen from "../Tiles";
+import ShelfAnglesScreen from "../ShelfAngles";
+import PlasterBoardScreen from "../PlasterBoard";
+import PlumbingScreen from "../Plumbing";
+import ElectricalScreen from "../Electrical";
+import FireCableScreen from "../FireCable";
+import FireSplinkerScreen from "../FireSprinkler";
+import FrameDoorScreen from "../FrameDoor";
+import FrameSteelScreen from "../FrameSteel";
+import DryFireCableScreen from "../DryFireCable";
+import WardrobeScreen from "../Wardrobe";
+import FrameDoorDetailScreen from "../FrameDoorDetail";
+import FrameSteelDetailScreen from "../FrameSteelDetail";
+
 const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
@@ -75,8 +95,33 @@ const ThirdStackNavigator = () => {
       <Stack.Screen name="Building List" component={BuildingListScreen} />
       <Stack.Screen name="Unit" component={unitScreen} />
       <Stack.Screen name="Units" component={unitLandScreen} />
+      <Stack.Screen name="AC" component={ACScreen} />
+      <Stack.Screen name="Carpet" component={CarpetScreen} />
+      <Stack.Screen name="Defects" component={DefectsScreen} />
+      <Stack.Screen name="Paints" component={PaintScreen} />
+      <Stack.Screen name="Windows" component={WindowsScreen} />
+      <Stack.Screen name="Kitchen" component={KitchenScreen} />
+      <Stack.Screen name="Plumbing" component={PlumbingScreen} />
+      <Stack.Screen name="Tiles" component={TilesScreen} />
+      <Stack.Screen name="Electrical" component={ElectricalScreen} />
+      <Stack.Screen name="Plaster Board" component={PlasterBoardScreen} />
+      <Stack.Screen name="Shelf Angles" component={ShelfAnglesScreen} />
+      <Stack.Screen name="Fire Cable" component={FireCableScreen} />
+      <Stack.Screen name="Fire Splinker" component={FireSplinkerScreen} />
+      <Stack.Screen name="Dry Fire Cables" component={DryFireCableScreen} />
+      <Stack.Screen name="Wardrobe" component={WardrobeScreen} />
       <Stack.Screen name="Building Add" component={buildingAddScreen} />
       <Stack.Screen name="UnitDetails" component={unitDetailsScreen} />
+      <Stack.Screen name="Door frame" component={FrameDoorScreen} />
+      <Stack.Screen
+        name="Door frame detail"
+        component={FrameDoorDetailScreen}
+      />
+      <Stack.Screen name="Steel framing" component={FrameSteelScreen} />
+      <Stack.Screen
+        name="Steel framing detail"
+        component={FrameSteelDetailScreen}
+      />
       <Stack.Screen name="Unit Add" component={UnitAddScreen} />
       <Stack.Screen name="Unit View" component={UnitViewDetailScreen} />
 

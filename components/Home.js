@@ -64,7 +64,7 @@ function Home({ navigation }) {
             <Text
               style={{ marginBottom: "2%", fontWeight: "200", fontSize: 30 }}
             >
-              Hello. How are you?: {state.userName} !
+              Hello. How are you? {state.userName} !
             </Text>
           )}
           <View
@@ -174,9 +174,9 @@ function Home({ navigation }) {
                       <IconButton
                         {...props}
                         icon="chevron-right"
-                        onPress={() => {
-                          navigation.navigate("Unit");
-                        }}
+                        // onPress={() => {
+                        //   navigation.navigate("Unit");
+                        // }}
                       />
                     )}
                   />

@@ -2,12 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 const UnitEach = (props) => {
-  const check = props.data;
-
   return (
     <View
       style={{
-        width: 75,
+        width: 150,
         height: 75,
         justifyContent: "center",
         alignItems: "center",

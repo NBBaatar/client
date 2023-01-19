@@ -260,6 +260,288 @@ const UnitLandryUpdateAfter = (props) => {
             ],
           },
         ],
+        framingDoor: [
+          {
+            statusOf: unitData?.units?.[0].framingDoor?.[0].statusOf,
+            reason: unitData?.units?.[0].framingDoor?.[0].reason,
+            fireBox: unitData?.units?.[0].framingDoor?.[0].fireBox,
+            fireRating: unitData?.units?.[0].framingDoor?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].framingDoor?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].framingDoor?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        framingSteel: [
+          {
+            statusOf: unitData?.units?.[0].framingSteel?.[0].statusOf,
+            reason: unitData?.units?.[0].framingSteel?.[0].reason,
+            fireRating: unitData?.units?.[0].framingSteel?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].framingSteel?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].framingSteel?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        electrical: [
+          {
+            statusOf: unitData?.units?.[0].electrical?.[0].statusOf,
+            reason: unitData?.units?.[0].electrical?.[0].reason,
+            fireRating: unitData?.units?.[0].electrical?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].electrical?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].electrical?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        plumbing: [
+          {
+            statusOf: unitData?.units?.[0].plumbing?.[0].statusOf,
+            reason: unitData?.units?.[0].plumbing?.[0].reason,
+            fireRating: unitData?.units?.[0].plumbing?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].plumbing?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].plumbing?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        ac: [
+          {
+            statusOf: unitData?.units?.[0].ac?.[0].statusOf,
+            reason: unitData?.units?.[0].ac?.[0].reason,
+            fireRating: unitData?.units?.[0].ac?.[0].fireRating,
+            photo: [
+              {
+                fileName: unitData?.units?.[0].ac?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].ac?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        fireSprinkler: [
+          {
+            statusOf: unitData?.units?.[0].fireSprinkler?.[0].statusOf,
+            reason: unitData?.units?.[0].fireSprinkler?.[0].reason,
+            fireRating: unitData?.units?.[0].fireSprinkler?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].fireSprinkler?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].fireSprinkler?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        fireCable: [
+          {
+            statusOf: unitData?.units?.[0].fireCable?.[0].statusOf,
+            reason: unitData?.units?.[0].fireCable?.[0].reason,
+            fireRating: unitData?.units?.[0].fireCable?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].fireCable?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].fireCable?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        dryFireCable: [
+          {
+            statusOf: unitData?.units?.[0].dryFireCable?.[0].statusOf,
+            reason: unitData?.units?.[0].dryFireCable?.[0].reason,
+            fireRating: unitData?.units?.[0].dryFireCable?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].dryFireCable?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].dryFireCable?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        windows: [
+          {
+            statusOf: unitData?.units?.[0].windows?.[0].statusOf,
+            reason: unitData?.units?.[0].windows?.[0].reason,
+            fireRating: unitData?.units?.[0].windows?.[0].fireRating,
+            photo: [
+              {
+                fileName: unitData?.units?.[0].windows?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].windows?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        plasterBoard: [
+          {
+            statusOf: unitData?.units?.[0].plasterBoard?.[0].statusOf,
+            reason: unitData?.units?.[0].plasterBoard?.[0].reason,
+            fireRating: unitData?.units?.[0].plasterBoard?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].plasterBoard?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].plasterBoard?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        tiles: [
+          {
+            ensuite: [
+              {
+                statusOf: unitData?.units?.[0].tiles?.[0].ensuite?.[0].statusOf,
+                reason: unitData?.units?.[0].tiles?.[0].ensuite?.[0].reason,
+                fireRating:
+                  unitData?.units?.[0].tiles?.[0].ensuite?.[0].fireRating,
+                photo: [
+                  {
+                    fileName:
+                      unitData?.units?.[0].tiles?.[0].ensuite?.[0].photo?.[0]
+                        .fileName,
+                    uri: unitData?.units?.[0].tiles?.[0].ensuite?.[0].photo?.[0]
+                      .uri,
+                  },
+                ],
+              },
+            ],
+            laundry: [
+              {
+                statusOf: unitData?.units?.[0].tiles?.[0].laundry?.[0].statusOf,
+                reason: unitData?.units?.[0].tiles?.[0].laundry?.[0].reason,
+                fireRating:
+                  unitData?.units?.[0].tiles?.[0].laundry?.[0].fireRating,
+                photo: [
+                  {
+                    fileName:
+                      unitData?.units?.[0].tiles?.[0].laundry?.[0].photo?.[0]
+                        .fileName,
+                    uri: unitData?.units?.[0].tiles?.[0].laundry?.[0].photo?.[0]
+                      .uri,
+                  },
+                ],
+              },
+            ],
+            kitchen: [
+              {
+                statusOf: unitData?.units?.[0].tiles?.[0].kitchen?.[0].statusOf,
+                reason: unitData?.units?.[0].tiles?.[0].kitchen?.[0].reason,
+                fireRating:
+                  unitData?.units?.[0].tiles?.[0].kitchen?.[0].fireRating,
+                photo: [
+                  {
+                    fileName:
+                      unitData?.units?.[0].tiles?.[0].kitchen?.[0].photo?.[0]
+                        .fileName,
+                    uri: unitData?.units?.[0].tiles?.[0].kitchen?.[0].photo?.[0]
+                      .uri,
+                  },
+                ],
+              },
+            ],
+            bathroom: [
+              {
+                statusOf:
+                  unitData?.units?.[0].tiles?.[0].bathroom?.[0].statusOf,
+                reason: unitData?.units?.[0].tiles?.[0].bathroom?.[0].reason,
+                fireRating:
+                  unitData?.units?.[0].tiles?.[0].bathroom?.[0].fireRating,
+                photo: [
+                  {
+                    fileName:
+                      unitData?.units?.[0].tiles?.[0].bathroom?.[0].photo?.[0]
+                        .fileName,
+                    uri: unitData?.units?.[0].tiles?.[0].bathroom?.[0]
+                      .photo?.[0].uri,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        kitchen: [
+          {
+            statusOf: unitData?.units?.[0].kitchen?.[0].statusOf,
+            reason: unitData?.units?.[0].kitchen?.[0].reason,
+            fireRating: unitData?.units?.[0].kitchen?.[0].fireRating,
+            photo: [
+              {
+                fileName: unitData?.units?.[0].kitchen?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].kitchen?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        wardrobe: [
+          {
+            statusOf: unitData?.units?.[0].wardrobe?.[0].statusOf,
+            reason: unitData?.units?.[0].wardrobe?.[0].reason,
+            fireRating: unitData?.units?.[0].wardrobe?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].wardrobe?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].wardrobe?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        carpet: [
+          {
+            statusOf: unitData?.units?.[0].carpet?.[0].statusOf,
+            reason: unitData?.units?.[0].carpet?.[0].reason,
+            fireRating: unitData?.units?.[0].carpet?.[0].fireRating,
+            photo: [
+              {
+                fileName: unitData?.units?.[0].carpet?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].carpet?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        paint: [
+          {
+            statusOf: unitData?.units?.[0].paint?.[0].statusOf,
+            reason: unitData?.units?.[0].paint?.[0].reason,
+            fireRating: unitData?.units?.[0].paint?.[0].fireRating,
+            photo: [
+              {
+                fileName: unitData?.units?.[0].paint?.[0].photo?.[0].fileName,
+                uri: unitData?.units?.[0].paint?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        shelfAnglesBriekWork: [
+          {
+            statusOf: unitData?.units?.[0].shelfAnglesBriekWork?.[0].statusOf,
+            reason: unitData?.units?.[0].shelfAnglesBriekWork?.[0].reason,
+            fireRating:
+              unitData?.units?.[0].shelfAnglesBriekWork?.[0].fireRating,
+            photo: [
+              {
+                fileName:
+                  unitData?.units?.[0].shelfAnglesBriekWork?.[0].photo?.[0]
+                    .fileName,
+                uri: unitData?.units?.[0].shelfAnglesBriekWork?.[0].photo?.[0]
+                  .uri,
+              },
+            ],
+          },
+        ],
       },
     ],
     building: buildingId,
