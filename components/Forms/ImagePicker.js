@@ -5,6 +5,7 @@ import * as ImagePicker from "expo-image-picker";
 import Feather from "react-native-vector-icons/Feather";
 export default (props) => {
   const [pickedImage, setPickedImage] = React.useState();
+
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(
       Permissions.CAMERA,
@@ -25,9 +26,12 @@ export default (props) => {
       aspect: [16, 9],
       quality: 0.5,
     });
-    // console.log(image.assets[0].uri);
-    setPickedImage(image.assets[0].uri);
-    props.setSelectedImage(image.assets[0].uri);
+    //Getting Image Name
+    const uri = image.assets[0].uri;
+    const fileName = uri.substring(uri.lastIndexOf("/") + 1);
+    setPickedImage(uri);
+    props.setSelectedImage(uri);
+    props.setImageName(fileName);
   };
   return (
     <View style={styles.main}>

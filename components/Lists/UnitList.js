@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import UnitEach from "../UnitEach";
 const UnitList = (props) => {

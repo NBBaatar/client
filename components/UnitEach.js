@@ -20,7 +20,7 @@ const UnitEach = (props) => {
           textAlign: "center",
         }}
       >
-        Level: {props.data.units?.[0].unitFloor}
+        Level: {props.data.unitFloor}
       </Text>
       <Text
         style={{
@@ -30,7 +30,7 @@ const UnitEach = (props) => {
           textAlign: "center",
         }}
       >
-        {props.data.units?.[0].unitNumber}
+        {props.data.unitNumber}
       </Text>
     </View>
   );

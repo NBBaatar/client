@@ -15,583 +15,198 @@ import axios from "axios";
 
 const UnitBathroomUpdateBefore = (props) => {
   //Before all states
-  const [balconyLevelBefore, setBalconyLevelBefore] = useState([
-    unitData?.units?.[0].waterProof?.[0].before?.[0].bathroom?.[0].level,
-  ]);
-  const [balconyAngleBefore, setBalconyAngleBefore] = useState([
-    unitData?.units?.[0].waterProof?.[0].before?.[0].bathroom?.[0].angle,
-  ]);
-  const [balconyConcrateBefore, setBalconyConcrateBefore] = useState([
-    unitData?.units?.[0].waterProof?.[0].before?.[0].bathroom?.[0].concrate,
-  ]);
-  const [balconyPatchBefore, setBalconyPatchBefore] = useState([
-    unitData?.units?.[0].waterProof?.[0].before?.[0].bathroom?.[0].patch,
-  ]);
-  const [balconySubStraightBefore, setBalconySubStraightBefore] = useState([
-    unitData?.units?.[0].waterProof?.[0].before?.[0].bathroom?.[0].subStraight,
-  ]);
+  const [balconyLevelBefore, setBalconyLevelBefore] = useState(null);
+  const [balconyAngleBefore, setBalconyAngleBefore] = useState(null);
+  const [balconyConcrateBefore, setBalconyConcrateBefore] = useState(null);
+  const [balconyPatchBefore, setBalconyPatchBefore] = useState(null);
+  const [balconySubStraightBefore, setBalconySubStraightBefore] =
+    useState(null);
+  const [imageName, setImageName] = useState(null);
   const [selectedImage, setSelectedImage] = useState();
   const buildingId = props.route.params.building;
-  const [unitData, setUnitData] = useState();
+  const id = props.route.params.id;
+  const unitId = props.route.params.unit;
+  const [waterProof, setWaterProof] = useState();
   const updateData = {
-    units: [
+    before: [
       {
-        unitNumber: unitData?.units?.[0].unitNumber,
-        unitFloor: unitData?.units?.[0].unitFloor,
-        waterProof: [
+        balcony: [
           {
-            before: [
-              {
-                balcony: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .balcony?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .balcony?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .balcony?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .balcony?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .balcony?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].before?.[0]
-                            .balcony?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].before?.[0]
-                          .balcony?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-                bathroom: [
-                  {
-                    level: balconyLevelBefore,
-                    angle: balconyAngleBefore,
-                    concrate: balconyConcrateBefore,
-                    patch: balconyPatchBefore,
-                    subStraight: balconySubStraightBefore,
-                    photo: [
-                      {
-                        fileName: selectedImage,
-                        uri: selectedImage,
-                      },
-                    ],
-                  },
-                ],
-                landry: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .landry?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .landry?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .landry?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .landry?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .landry?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].before?.[0]
-                            .landry?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].before?.[0]
-                          .landry?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-                ensuit: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .ensuit?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .ensuit?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .ensuit?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .ensuit?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].before?.[0]
-                        .ensuit?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].before?.[0]
-                            .ensuit?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].before?.[0]
-                          .ensuit?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-            after: [
-              {
-                balcony: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .balcony?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .balcony?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .balcony?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .balcony?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .balcony?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].after?.[0]
-                            .balcony?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].after?.[0]
-                          .balcony?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-                bathroom: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .bathroom?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .bathroom?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .bathroom?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .bathroom?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .bathroom?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].after?.[0]
-                            .bathroom?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].after?.[0]
-                          .bathroom?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-                landry: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .landry?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .landry?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .landry?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .landry?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .landry?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].after?.[0]
-                            .landry?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].after?.[0]
-                          .landry?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-                ensuit: [
-                  {
-                    level:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .ensuit?.[0].level,
-                    angle:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .ensuit?.[0].angle,
-                    concrate:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .ensuit?.[0].concrate,
-                    patch:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .ensuit?.[0].patch,
-                    subStraight:
-                      unitData?.units?.[0].waterProof?.[0].after?.[0]
-                        .ensuit?.[0].subStraight,
-                    photo: [
-                      {
-                        fileName:
-                          unitData?.units?.[0].waterProof?.[0].after?.[0]
-                            .ensuit?.[0].photo?.[0].fileName,
-                        uri: unitData?.units?.[0].waterProof?.[0].after?.[0]
-                          .ensuit?.[0].photo?.[0].uri,
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-        framingDoor: [
-          {
-            statusOf: unitData?.units?.[0].framingDoor?.[0].statusOf,
-            reason: unitData?.units?.[0].framingDoor?.[0].reason,
-            fireBox: unitData?.units?.[0].framingDoor?.[0].fireBox,
-            fireRating: unitData?.units?.[0].framingDoor?.[0].fireRating,
+            level: waterProof?.before?.[0].balcony?.[0].level,
+            angle: waterProof?.before?.[0].balcony?.[0].angle,
+            concrate: waterProof?.before?.[0].balcony?.[0].concrate,
+            patch: waterProof?.before?.[0].balcony?.[0].patch,
+            subStraight: waterProof?.before?.[0].balcony?.[0].subStraight,
             photo: [
               {
                 fileName:
-                  unitData?.units?.[0].framingDoor?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].framingDoor?.[0].photo?.[0].uri,
+                  waterProof?.before?.[0].balcony?.[0].photo?.[0].fileName,
+                uri: waterProof?.before?.[0].balcony?.[0].photo?.[0].uri,
               },
             ],
           },
         ],
-        framingSteel: [
+        bathroom: [
           {
-            statusOf: unitData?.units?.[0].framingSteel?.[0].statusOf,
-            reason: unitData?.units?.[0].framingSteel?.[0].reason,
-            fireRating: unitData?.units?.[0].framingSteel?.[0].fireRating,
+            level: balconyLevelBefore,
+            angle: balconyAngleBefore,
+            concrate: balconyConcrateBefore,
+            patch: balconyPatchBefore,
+            subStraight: balconySubStraightBefore,
+            photo: [
+              {
+                fileName: imageName,
+                uri: `${serverClient}/uploads/bathroom/before/` + imageName,
+              },
+            ],
+          },
+        ],
+        landry: [
+          {
+            level: waterProof?.before?.[0].landry?.[0].level,
+            angle: waterProof?.before?.[0].landry?.[0].angle,
+            concrate: waterProof?.before?.[0].landry?.[0].concrate,
+            patch: waterProof?.before?.[0].landry?.[0].patch,
+            subStraight: waterProof?.before?.[0].landry?.[0].subStraight,
             photo: [
               {
                 fileName:
-                  unitData?.units?.[0].framingSteel?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].framingSteel?.[0].photo?.[0].uri,
+                  waterProof?.before?.[0].landry?.[0].photo?.[0].fileName,
+                uri: waterProof?.before?.[0].landry?.[0].photo?.[0].uri,
               },
             ],
           },
         ],
-        electrical: [
+        ensuit: [
           {
-            statusOf: unitData?.units?.[0].electrical?.[0].statusOf,
-            reason: unitData?.units?.[0].electrical?.[0].reason,
-            fireRating: unitData?.units?.[0].electrical?.[0].fireRating,
+            level: waterProof?.before?.[0].ensuit?.[0].level,
+            angle: waterProof?.before?.[0].ensuit?.[0].angle,
+            concrate: waterProof?.before?.[0].ensuit?.[0].concrate,
+            patch: waterProof?.before?.[0].ensuit?.[0].patch,
+            subStraight: waterProof?.before?.[0].ensuit?.[0].subStraight,
             photo: [
               {
                 fileName:
-                  unitData?.units?.[0].electrical?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].electrical?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        plumbing: [
-          {
-            statusOf: unitData?.units?.[0].plumbing?.[0].statusOf,
-            reason: unitData?.units?.[0].plumbing?.[0].reason,
-            fireRating: unitData?.units?.[0].plumbing?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].plumbing?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].plumbing?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        ac: [
-          {
-            statusOf: unitData?.units?.[0].ac?.[0].statusOf,
-            reason: unitData?.units?.[0].ac?.[0].reason,
-            fireRating: unitData?.units?.[0].ac?.[0].fireRating,
-            photo: [
-              {
-                fileName: unitData?.units?.[0].ac?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].ac?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        fireSprinkler: [
-          {
-            statusOf: unitData?.units?.[0].fireSprinkler?.[0].statusOf,
-            reason: unitData?.units?.[0].fireSprinkler?.[0].reason,
-            fireRating: unitData?.units?.[0].fireSprinkler?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].fireSprinkler?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].fireSprinkler?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        fireCable: [
-          {
-            statusOf: unitData?.units?.[0].fireCable?.[0].statusOf,
-            reason: unitData?.units?.[0].fireCable?.[0].reason,
-            fireRating: unitData?.units?.[0].fireCable?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].fireCable?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].fireCable?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        dryFireCable: [
-          {
-            statusOf: unitData?.units?.[0].dryFireCable?.[0].statusOf,
-            reason: unitData?.units?.[0].dryFireCable?.[0].reason,
-            fireRating: unitData?.units?.[0].dryFireCable?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].dryFireCable?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].dryFireCable?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        windows: [
-          {
-            statusOf: unitData?.units?.[0].windows?.[0].statusOf,
-            reason: unitData?.units?.[0].windows?.[0].reason,
-            fireRating: unitData?.units?.[0].windows?.[0].fireRating,
-            photo: [
-              {
-                fileName: unitData?.units?.[0].windows?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].windows?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        plasterBoard: [
-          {
-            statusOf: unitData?.units?.[0].plasterBoard?.[0].statusOf,
-            reason: unitData?.units?.[0].plasterBoard?.[0].reason,
-            fireRating: unitData?.units?.[0].plasterBoard?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].plasterBoard?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].plasterBoard?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        tiles: [
-          {
-            ensuite: [
-              {
-                statusOf: unitData?.units?.[0].tiles?.[0].ensuite?.[0].statusOf,
-                reason: unitData?.units?.[0].tiles?.[0].ensuite?.[0].reason,
-                fireRating:
-                  unitData?.units?.[0].tiles?.[0].ensuite?.[0].fireRating,
-                photo: [
-                  {
-                    fileName:
-                      unitData?.units?.[0].tiles?.[0].ensuite?.[0].photo?.[0]
-                        .fileName,
-                    uri: unitData?.units?.[0].tiles?.[0].ensuite?.[0].photo?.[0]
-                      .uri,
-                  },
-                ],
-              },
-            ],
-            laundry: [
-              {
-                statusOf: unitData?.units?.[0].tiles?.[0].laundry?.[0].statusOf,
-                reason: unitData?.units?.[0].tiles?.[0].laundry?.[0].reason,
-                fireRating:
-                  unitData?.units?.[0].tiles?.[0].laundry?.[0].fireRating,
-                photo: [
-                  {
-                    fileName:
-                      unitData?.units?.[0].tiles?.[0].laundry?.[0].photo?.[0]
-                        .fileName,
-                    uri: unitData?.units?.[0].tiles?.[0].laundry?.[0].photo?.[0]
-                      .uri,
-                  },
-                ],
-              },
-            ],
-            kitchen: [
-              {
-                statusOf: unitData?.units?.[0].tiles?.[0].kitchen?.[0].statusOf,
-                reason: unitData?.units?.[0].tiles?.[0].kitchen?.[0].reason,
-                fireRating:
-                  unitData?.units?.[0].tiles?.[0].kitchen?.[0].fireRating,
-                photo: [
-                  {
-                    fileName:
-                      unitData?.units?.[0].tiles?.[0].kitchen?.[0].photo?.[0]
-                        .fileName,
-                    uri: unitData?.units?.[0].tiles?.[0].kitchen?.[0].photo?.[0]
-                      .uri,
-                  },
-                ],
-              },
-            ],
-            bathroom: [
-              {
-                statusOf:
-                  unitData?.units?.[0].tiles?.[0].bathroom?.[0].statusOf,
-                reason: unitData?.units?.[0].tiles?.[0].bathroom?.[0].reason,
-                fireRating:
-                  unitData?.units?.[0].tiles?.[0].bathroom?.[0].fireRating,
-                photo: [
-                  {
-                    fileName:
-                      unitData?.units?.[0].tiles?.[0].bathroom?.[0].photo?.[0]
-                        .fileName,
-                    uri: unitData?.units?.[0].tiles?.[0].bathroom?.[0]
-                      .photo?.[0].uri,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-        kitchen: [
-          {
-            statusOf: unitData?.units?.[0].kitchen?.[0].statusOf,
-            reason: unitData?.units?.[0].kitchen?.[0].reason,
-            fireRating: unitData?.units?.[0].kitchen?.[0].fireRating,
-            photo: [
-              {
-                fileName: unitData?.units?.[0].kitchen?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].kitchen?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        wardrobe: [
-          {
-            statusOf: unitData?.units?.[0].wardrobe?.[0].statusOf,
-            reason: unitData?.units?.[0].wardrobe?.[0].reason,
-            fireRating: unitData?.units?.[0].wardrobe?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].wardrobe?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].wardrobe?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        carpet: [
-          {
-            statusOf: unitData?.units?.[0].carpet?.[0].statusOf,
-            reason: unitData?.units?.[0].carpet?.[0].reason,
-            fireRating: unitData?.units?.[0].carpet?.[0].fireRating,
-            photo: [
-              {
-                fileName: unitData?.units?.[0].carpet?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].carpet?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        paint: [
-          {
-            statusOf: unitData?.units?.[0].paint?.[0].statusOf,
-            reason: unitData?.units?.[0].paint?.[0].reason,
-            fireRating: unitData?.units?.[0].paint?.[0].fireRating,
-            photo: [
-              {
-                fileName: unitData?.units?.[0].paint?.[0].photo?.[0].fileName,
-                uri: unitData?.units?.[0].paint?.[0].photo?.[0].uri,
-              },
-            ],
-          },
-        ],
-        shelfAnglesBriekWork: [
-          {
-            statusOf: unitData?.units?.[0].shelfAnglesBriekWork?.[0].statusOf,
-            reason: unitData?.units?.[0].shelfAnglesBriekWork?.[0].reason,
-            fireRating:
-              unitData?.units?.[0].shelfAnglesBriekWork?.[0].fireRating,
-            photo: [
-              {
-                fileName:
-                  unitData?.units?.[0].shelfAnglesBriekWork?.[0].photo?.[0]
-                    .fileName,
-                uri: unitData?.units?.[0].shelfAnglesBriekWork?.[0].photo?.[0]
-                  .uri,
+                  waterProof?.before?.[0].ensuit?.[0].photo?.[0].fileName,
+                uri: waterProof?.before?.[0].ensuit?.[0].photo?.[0].uri,
               },
             ],
           },
         ],
       },
     ],
-    building: buildingId,
-    statusOf: [
+    after: [
       {
-        complate: true,
-        fixing: "No value",
-        other: "No value",
+        balcony: [
+          {
+            level: waterProof?.after?.[0].balcony?.[0].level,
+            angle: waterProof?.after?.[0].balcony?.[0].angle,
+            concrate: waterProof?.after?.[0].balcony?.[0].concrate,
+            patch: waterProof?.after?.[0].balcony?.[0].patch,
+            subStraight: waterProof?.after?.[0].balcony?.[0].subStraight,
+            photo: [
+              {
+                fileName:
+                  waterProof?.after?.[0].balcony?.[0].photo?.[0].fileName,
+                uri: waterProof?.after?.[0].balcony?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        bathroom: [
+          {
+            level: waterProof?.after?.[0].bathroom?.[0].level,
+            angle: waterProof?.after?.[0].bathroom?.[0].angle,
+            concrate: waterProof?.after?.[0].bathroom?.[0].concrate,
+            patch: waterProof?.after?.[0].bathroom?.[0].patch,
+            subStraight: waterProof?.after?.[0].bathroom?.[0].subStraight,
+            photo: [
+              {
+                fileName:
+                  waterProof?.after?.[0].bathroom?.[0].photo?.[0].fileName,
+                uri: waterProof?.after?.[0].bathroom?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        landry: [
+          {
+            level: waterProof?.after?.[0].landry?.[0].level,
+            angle: waterProof?.after?.[0].landry?.[0].angle,
+            concrate: waterProof?.after?.[0].landry?.[0].concrate,
+            patch: waterProof?.after?.[0].landry?.[0].patch,
+            subStraight: waterProof?.after?.[0].landry?.[0].subStraight,
+            photo: [
+              {
+                fileName:
+                  waterProof?.after?.[0].landry?.[0].photo?.[0].fileName,
+                uri: waterProof?.after?.[0].landry?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
+        ensuit: [
+          {
+            level: waterProof?.after?.[0].ensuit?.[0].level,
+            angle: waterProof?.after?.[0].ensuit?.[0].angle,
+            concrate: waterProof?.after?.[0].ensuit?.[0].concrate,
+            patch: waterProof?.after?.[0].ensuit?.[0].patch,
+            subStraight: waterProof?.after?.[0].ensuit?.[0].subStraight,
+            photo: [
+              {
+                fileName:
+                  waterProof?.after?.[0].ensuit?.[0].photo?.[0].fileName,
+                uri: waterProof?.after?.[0].ensuit?.[0].photo?.[0].uri,
+              },
+            ],
+          },
+        ],
       },
     ],
+    statusOf: [{ complate: false, fixing: "No value", other: "No value" }],
+    unit: unitId,
+    buildingId: buildingId,
   };
-
   useEffect(() => {
     axios
-      .get(`${serverClient}/api/v1/units/${props.route.params.id}`)
+      .get(`${serverClient}/api/v1/waterproof/${id}`)
       .then((response) => {
-        setUnitData(response.data.data);
+        setWaterProof(response.data.data);
       })
       .catch((err) => Alert.alert(err));
   }, []);
   const handleUpdate = () => {
     axios
-      .put(`${serverClient}/api/v1/units/${props.route.params.id}`, updateData)
+      .put(
+        `${serverClient}/api/v1/waterproof/${props.route.params.id}`,
+        updateData
+      )
       .then((response) => {
         const xhr = new XMLHttpRequest();
         const fmData = new FormData();
         const fileName = selectedImage.substring(
           selectedImage.lastIndexOf("/") + 1
         );
-
         const fileExt = selectedImage.substring(
           selectedImage.lastIndexOf(".") + 1
         );
-
         fmData.append("file", {
           uri: selectedImage,
           type: `image/${fileExt}`,
           name: fileName,
         });
+        setImageName(fileName);
         xhr.open(
           "PUT",
-          `${serverClient}/api/v1/units/${props.route.params.id}/bathroom-before`
+          `${serverClient}/api/v1/waterproof/${props.route.params.id}/bathroom-before`
         );
+
         xhr.send(fmData);
-        Alert.alert("Data Saved!");
-        // props.navigation.goBack();
+        Alert.alert("Data updated!");
+        props.navigation.popToTop();
       })
       .catch((err) => {
-        Alert.alert(err);
+        Alert.alert("Error: ", err);
       });
   };
 
@@ -637,7 +252,10 @@ const UnitBathroomUpdateBefore = (props) => {
             value={balconySubStraightBefore}
             onChangeText={(value) => setBalconySubStraightBefore(value)}
           />
-          <ImagePicker setSelectedImage={setSelectedImage} />
+          <ImagePicker
+            setSelectedImage={setSelectedImage}
+            setImageName={setImageName}
+          />
           <FormButton onPress={handleUpdate} text="Update" />
         </ScrollView>
       </View>

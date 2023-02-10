@@ -24,7 +24,9 @@ const ProjectTest = (props) => {
         setProjects(response.data.data);
         setLoading(false);
       })
-      .catch((err) => console.log(err.response), setLoading(false));
+      .catch((err) => {
+        alert(err.response), setLoading(false);
+      });
   }, [props.route.params]);
   return (
     <Animatable.View animation="fadeInDownBig" style={styles.center}>

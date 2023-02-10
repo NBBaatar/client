@@ -46,7 +46,7 @@ const BuildingList = (props) => {
           marginLeft: 10,
         }}
       >
-        Which Building:
+        Building number:
       </Text>
       <FlatList
         horizontal

@@ -14,12 +14,12 @@ const FormPicker = (props) => {
           selectedValue={props.value}
           onValueChange={props.onValueChange}
         >
+          <Picker.Item label="Please select an option" value="0" />
           {props.dataPicker.map((el, index) => (
             <Picker.Item
               label={el}
               key={index}
               value={props.values[index]}
-              // selectedValue={selectedValue}
             ></Picker.Item>
           ))}
         </Picker>

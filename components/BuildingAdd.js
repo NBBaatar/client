@@ -40,14 +40,15 @@ const BuildingAdd = (props) => {
         ],
       })
       .then((response) => {
-        setRefresh(true),
+        setBuildingNumber(null),
+          setRefresh(true),
           props.navigation.navigate("Building", {
             refresh: refresh,
           }),
-          alert("Data saved!");
+          Alert.alert("Data saved!");
       })
       .catch((err) => {
-        alert(err);
+        Alert.alert(err);
       });
   };
 

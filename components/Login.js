@@ -30,7 +30,6 @@ const loginScreen = (props) => {
       Alert.alert("Enter your password.");
       return;
     }
-
     state.login(email, password);
     props.navigation.navigate("Home");
     if (state.error) {

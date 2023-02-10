@@ -15,11 +15,12 @@ const UnitLand = (props) => {
         <View>
           <Text style={styles.componentHeader}>Unit's Check list</Text>
         </View>
+
         <ScrollView>
           <View style={styles.view2}>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("UnitDetails", {
+                props.navigation.navigate("Water Proof land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -30,7 +31,7 @@ const UnitLand = (props) => {
 
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Door frame detail", {
+                props.navigation.navigate("Door frame land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -40,7 +41,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Steel framing detail", {
+                props.navigation.navigate("Steel framing land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -50,7 +51,17 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Electrical", {
+                props.navigation.navigate("Hebel land", {
+                  id: props.route.params.id,
+                  unit: props.route.params.units.item,
+                });
+              }}
+            >
+              <Text style={styles.textStyle}>Hebel</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                props.navigation.navigate("Electrical land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -60,7 +71,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Plumbing", {
+                props.navigation.navigate("Plumbing land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -70,7 +81,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("AC", {
+                props.navigation.navigate("Ac Land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -80,7 +91,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Fire Splinker", {
+                props.navigation.navigate("Fire Splinker land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -90,7 +101,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Fire Cable", {
+                props.navigation.navigate("Fire Cable land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -100,7 +111,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Dry Fire Cables", {
+                props.navigation.navigate("Dry Fire cable land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -110,7 +121,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Windows", {
+                props.navigation.navigate("Windows land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -120,7 +131,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Plaster Board", {
+                props.navigation.navigate("Plaster Board land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -130,7 +141,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Tiles", {
+                props.navigation.navigate("Tiles land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -140,7 +151,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Kitchen", {
+                props.navigation.navigate("Kitchen land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -150,7 +161,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Wardrobe", {
+                props.navigation.navigate("Wardrobe land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -160,7 +171,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Carpet", {
+                props.navigation.navigate("Carpet Land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -170,7 +181,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Paints", {
+                props.navigation.navigate("Paints land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -180,7 +191,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Shelf Angles", {
+                props.navigation.navigate("Shelf Angles land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -190,7 +201,7 @@ const UnitLand = (props) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                props.navigation.navigate("Defects", {
+                props.navigation.navigate("Defects land", {
                   id: props.route.params.id,
                   unit: props.route.params.units.item,
                 });
@@ -218,10 +229,10 @@ const styles = StyleSheet.create({
     flex: 16,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
     backgroundColor: "#fff",
   },
   componentHeader: {
@@ -232,7 +243,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",

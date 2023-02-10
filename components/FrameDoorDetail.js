@@ -1,73 +1,83 @@
 import {
   StyleSheet,
+  Alert,
   Text,
   View,
-  SafeAreaView,
-  ScrollView,
   Image,
+  SafeAreaView,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { serverClient } from "../Constant";
+import axios from "axios";
 import FormButton from "../components/Forms/FormButton";
+import * as Animatable from "react-native-animatable";
+
 const FrameDoorDetail = (props) => {
+  const [frameDoor, setFrameDoor] = useState([]);
   const data = props.route.params.unit;
-  const uri = data.units?.[0].framingDoor?.[0].photo?.[0].uri;
+  console.log(props.route.params.id);
+  useEffect(() => {
+    axios
+      .get(`${serverClient}/api/v1/doorframing/${props.route.params.id}`)
+      .then((response) => {
+        setFrameDoor(response.data.data);
+      })
+      .catch((err) => Alert.alert(err));
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#36393e" }}>
       <View style={styles.view1}>
-        <Text style={styles.componentHeader}>Door frame details: </Text>
-      </View>
-      <View style={styles.view2}>
-        <Text style={styles.componentTitle}>
-          Unit Number: {data.units?.[0].unitNumber}
+        <Text style={styles.componentHeader}>
+          All Air conditioning details:
         </Text>
-        <ScrollView>
-          <View style={styles.componentContent}>
-            <Text style={styles.textLabelStyle}>Status: </Text>
-            <Text style={styles.textValueStyle}>
-              {data.units?.[0].framingDoor?.[0].statusOf}
-            </Text>
-          </View>
-          <View style={styles.componentContent}>
-            <Text style={styles.textLabelStyle}>Reason: </Text>
-            <Text style={styles.textValueStyle}>
-              {data.units?.[0].framingDoor?.[0].reason}
-            </Text>
-          </View>
-          <View style={styles.componentContent}>
-            <Text style={styles.textLabelStyle}>Fire rate: </Text>
-            <Text style={styles.textValueStyle}>
-              {data.units?.[0].framingDoor?.[0].fireRating}
-            </Text>
-          </View>
-          <View style={styles.componentContent}>
-            <Text style={styles.textLabelStyle}>Fire box: </Text>
-            <Text style={styles.textValueStyle}>
-              {String(data.units?.[0].framingDoor?.[0].fireBox)}
-            </Text>
-          </View>
-          <View style={styles.componentContent}>
-            <Text style={styles.textLabelStyle}>Image: </Text>
-          </View>
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: 15,
-              borderWidth: 1,
-            }}
-            source={{ uri: uri }}
-          />
-        </ScrollView>
+      </View>
+      <Animatable.View animation="bounceInUp" style={styles.view2}>
+        <Text style={styles.componentTitle}>
+          Unit Number: {data.unitNumber}
+        </Text>
+
+        <View style={styles.componentContent}>
+          <Text style={styles.textLabelStyle}>Status of: </Text>
+          <Text style={styles.textValueStyle}> {frameDoor.statusOf}</Text>
+        </View>
+        <View style={styles.componentContent}>
+          <Text style={styles.textLabelStyle}>Reason: </Text>
+          <Text style={styles.textValueStyle}> {frameDoor.reason}</Text>
+        </View>
+        <View style={styles.componentContent}>
+          <Text style={styles.textLabelStyle}>Fire rating: </Text>
+          <Text style={styles.textValueStyle}> {frameDoor.fireRating}</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            marginHorizontal: 10,
+            marginVertical: 10,
+          }}
+        >
+          <Text style={styles.textLabelStyle}>List of all Images: </Text>
+        </View>
+
+        <Image
+          key={frameDoor._id}
+          source={{
+            uri: frameDoor.photo?.[0].uri,
+          }}
+          style={styles.item}
+        />
+
         <FormButton
           onPress={() => {
             props.navigation.navigate("Door frame", {
-              id: data._id,
+              id: props.route.params.id,
               unit: data,
             });
           }}
           text="Edit"
         />
-      </View>
+      </Animatable.View>
     </SafeAreaView>
   );
 };
@@ -75,6 +85,12 @@ const FrameDoorDetail = (props) => {
 export default FrameDoorDetail;
 
 const styles = StyleSheet.create({
+  componentHeader: {
+    color: "white",
+    textAlign: "center",
+    paddingVertical: 10,
+    fontSize: 16,
+  },
   view1: {
     flex: 1,
     paddingHorizontal: 20,
@@ -89,19 +105,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     backgroundColor: "#fff",
   },
-  componentHeader: {
-    color: "white",
-    textAlign: "center",
-    paddingVertical: 10,
-    fontSize: 16,
-  },
-  componentContent: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginHorizontal: 10,
-    marginVertical: 10,
-    borderBottomWidth: 1,
-  },
   componentTitle: {
     justifyContent: "center",
     alignContent: "center",
@@ -111,6 +114,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 10,
   },
+  componentContent: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginHorizontal: 10,
+    marginVertical: 10,
+    borderBottomWidth: 1,
+  },
   textLabelStyle: {
     fontSize: 24,
     fontWeight: "200",
@@ -118,5 +128,19 @@ const styles = StyleSheet.create({
   textValueStyle: {
     fontSize: 24,
     fontWeight: "400",
+  },
+  item: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 370,
+    height: 230,
+    borderColor: "black",
+    borderWidth: 1,
+    marginBottom: 10,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
 });
