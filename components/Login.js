@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import UserContext from "../Contexts/UserContext";
 
-const loginScreen = (props) => {
+const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [spinner, setSpinner] = useState(false);
@@ -34,7 +34,7 @@ const loginScreen = (props) => {
     props.navigation.navigate("Home");
     if (state.error) {
       setSpinner(false);
-      console.log("error at: ", state.error);
+      console.log("error at: ", state);
       setEmail(null);
       setPassword(null);
     }
@@ -91,7 +91,7 @@ const loginScreen = (props) => {
   );
 };
 
-export default loginScreen;
+export default LoginScreen;
 const styles = StyleSheet.create({
   // container: {},
   imgContainer: {

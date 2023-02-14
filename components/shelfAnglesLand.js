@@ -11,10 +11,10 @@ import {
 import React, { useState, useEffect } from "react";
 import { serverClient } from "../Constant";
 import axios from "axios";
-import FormButton from "../components/Forms/FormButton";
+import FormButton from "./Forms/FormButton";
 import * as Animatable from "react-native-animatable";
 
-const shelfAnglesLand = (props) => {
+const ShelfAnglesLand = (props) => {
   const [shelfAngle, setShelfAngle] = useState([]);
   const data = props.route.params.unit;
   const id = props.route.params.id;
@@ -94,7 +94,7 @@ const shelfAnglesLand = (props) => {
   );
 };
 
-export default shelfAnglesLand;
+export default ShelfAnglesLand;
 
 const styles = StyleSheet.create({
   componentHeader: {

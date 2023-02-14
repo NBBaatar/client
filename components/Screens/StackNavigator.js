@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import homeScreen from "../../components/Home";
+import HomeScreen from "../../components/Home";
 import SplashScreen from "../Screens/SplashScreen";
-import projectScreen from "../../components/Project";
-import buildingScreen from "../../components/Building";
-import loginScreen from "../../components/Login";
-import projectAddScreen from "../../components/ProjectAdd";
-import buildingAddScreen from "../BuildingAdd";
-import unitScreen from "../Unit";
+import ProjectScreen from "../../components/Project";
+import BuildingScreen from "../../components/Building";
+import LoginScreen from "../../components/Login";
+import ProjectAddScreen from "../../components/ProjectAdd";
+import BuildingAddScreen from "../BuildingAdd";
+import UnitScreen from "../Unit";
 import UnitAddScreen from "../UnitAdd";
 import UnitUpdateBalconyBeforeScreen from "../UnitUpdateBalconyBefore";
 import UnitBathroomUpdateBeforeScreen from "../UnitBathroomUpdateBefore";
@@ -20,14 +20,13 @@ import UnitEnsuitUpdateAfterScreen from "../UnitEnsuitUpdateAfter";
 import BuildingListScreen from "../Lists/BuildingList";
 import UserContext from "../../Contexts/UserContext";
 import TabNavigatorScreen from "../Screens/TabNavigtor";
-import unitLandScreen from "../UnitLand";
+import UnitLandScreen from "../UnitLand";
 import ACScreen from "../AC";
 import CarpetScreen from "../Carpet";
 import DefectsScreen from "../Defects";
 import PaintScreen from "../Paints";
 import WindowsScreen from "../Windows";
 import KitchenScreen from "../Kitchen";
-
 import ShelfAnglesScreen from "../ShelfAngles";
 import PlasterBoardScreen from "../PlasterBoard";
 import PlumbingScreen from "../Plumbing";
@@ -81,7 +80,7 @@ import PlasterBoardAddScreen from "../PlasterBoardAdd";
 import PlumbingAddScreen from "../PlumbingAdd";
 import PlumbingLandScreen from "../PlumbingLand";
 import ShelfAnglesAddScreen from "../ShelfAnglesAdd";
-import ShelfAnglesLandScreen from "../shelfAnglesLand";
+import ShelfAnglesLandScreen from "../ShelfAnglesLand";
 import WardrobeLandScreen from "../WardrobeLand";
 import WardrobeAddScreen from "../WardrobeAdd";
 import WindowsAddScreen from "../WindowsAdd";
@@ -126,9 +125,9 @@ const MainStackNavigator = () => {
         headerBackTitle: "Back",
       }}
     >
-      <Stack.Screen name="Home" component={homeScreen} />
-      <Stack.Screen name="Login" component={loginScreen} />
-      <Stack.Screen name="Unit" component={unitScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Unit" component={UnitScreen} />
     </Stack.Navigator>
   );
 };
@@ -143,8 +142,8 @@ const SecondStackNavigator = () => {
         headerBackTitle: "Back",
       }}
     >
-      <Stack.Screen name="Project" component={projectScreen} />
-      <Stack.Screen name="Project Add" component={projectAddScreen} />
+      <Stack.Screen name="Project" component={ProjectScreen} />
+      <Stack.Screen name="Project Add" component={ProjectAddScreen} />
     </Stack.Navigator>
   );
 };
@@ -159,10 +158,10 @@ const ThirdStackNavigator = () => {
         headerBackTitle: "Back",
       }}
     >
-      <Stack.Screen name="Building" component={buildingScreen} />
+      <Stack.Screen name="Building" component={BuildingScreen} />
       <Stack.Screen name="Building List" component={BuildingListScreen} />
-      <Stack.Screen name="Unit" component={unitScreen} />
-      <Stack.Screen name="Units" component={unitLandScreen} />
+      <Stack.Screen name="Unit" component={UnitScreen} />
+      <Stack.Screen name="Units" component={UnitLandScreen} />
       <Stack.Screen name="Ac Land" component={AcLandScreen} />
       <Stack.Screen name="AC" component={ACScreen} />
       <Stack.Screen name="Ac add" component={AcAddScreen} />
@@ -284,7 +283,7 @@ const ThirdStackNavigator = () => {
       <Stack.Screen name="Wardrobe add" component={WardrobeAddScreen} />
       <Stack.Screen name="Wardrobe" component={WardrobeScreen} />
       <Stack.Screen name="Wardrobe detail" component={WardrobeDetailScreen} />
-      <Stack.Screen name="Building Add" component={buildingAddScreen} />
+      <Stack.Screen name="Building Add" component={BuildingAddScreen} />
 
       <Stack.Screen name="Door frame land" component={FrameDoorLandScreen} />
       <Stack.Screen name="Door frame add" component={FrameDoorAddScreen} />
@@ -400,12 +399,10 @@ const StackNavigator = () => {
           <Stack.Screen name="Home" component={TabNavigatorScreen} />
         ) : (
           <>
-            <Stack.Screen name="Login" component={loginScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
           </>
         )}
         <Stack.Screen name="Splash" component={SplashScreen} />
-        {/* <Stack.Screen name="Login" component={loginScreen} /> */}
-        {/* <Stack.Screen name="Home" component={TabNavigatorScreen} /> */}
       </Stack.Navigator>
     </>
   );

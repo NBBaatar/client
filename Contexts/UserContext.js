@@ -33,8 +33,8 @@ export const UserStore = (props) => {
             setIsLoggedIn(true);
           })
           .catch((err) => {
+            console.log("Error: ", err);
             alert(result.data.Info);
-            console.log(err);
             setIsLoggedIn(false);
           });
       })

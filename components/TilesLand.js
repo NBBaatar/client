@@ -18,7 +18,7 @@ import Feather from "react-native-vector-icons/Feather";
 
 const TilesLand = (props) => {
   const [tiles, setTiles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const data = props.route.params.unit;
   const id = props.route.params.id;
   const unit = props.route.params.unit._id;
@@ -27,15 +27,13 @@ const TilesLand = (props) => {
   const defaultPhoto = "no-photo.png";
 
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     axios
       .get(`${serverClient}/api/v1/units/${props.route.params.id}/tiles`)
       .then((response) => {
-        setTiles(response.data.data);
-        setIsLoading(false);
+        setTiles(response.data.data), setLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
         Alert.alert(err);
       });
   }, []);
@@ -103,7 +101,7 @@ const TilesLand = (props) => {
         props.navigation.popToTop();
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         Alert.alert(err);
       });
   };
@@ -113,7 +111,7 @@ const TilesLand = (props) => {
         <Text style={styles.componentHeader}>All Tiles details:</Text>
       </View>
       <Animatable.View animation="bounceInUp" style={styles.view2}>
-        {isLoading ? (
+        {loading ? (
           <ActivityIndicator size="large" color="#383c4a" />
         ) : (
           <>
@@ -164,7 +162,7 @@ const TilesLand = (props) => {
                                       source={{
                                         uri: elem.uri,
                                       }}
-                                      onLoadStart={() => setIsLoading(true)}
+                                      // onLoadStart={() => setLoading(true)}
                                       style={styles.item}
                                     />
                                   </TouchableOpacity>
@@ -214,7 +212,7 @@ const TilesLand = (props) => {
                                       source={{
                                         uri: elem.uri,
                                       }}
-                                      onLoadStart={() => setIsLoading(true)}
+                                      // onLoadStart={() => setLoading(true)}
                                       style={styles.item}
                                     />
                                   </TouchableOpacity>
@@ -264,7 +262,7 @@ const TilesLand = (props) => {
                                       source={{
                                         uri: elem.uri,
                                       }}
-                                      onLoadStart={() => setIsLoading(true)}
+                                      // onLoadStart={() => setLoading(true)}
                                       style={styles.item}
                                     />
                                   </TouchableOpacity>
@@ -314,7 +312,7 @@ const TilesLand = (props) => {
                                       source={{
                                         uri: elem.uri,
                                       }}
-                                      onLoadStart={() => setIsLoading(true)}
+                                      // onLoadStart={() => setLoading(true)}
                                       style={styles.item}
                                     />
                                   </TouchableOpacity>
