@@ -118,7 +118,6 @@ const CarpetDetail = (props) => {
                     alignContent: "center",
                   }}
                 >
-                  {" "}
                   <Text
                     style={{
                       fontSize: 20,

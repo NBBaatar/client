@@ -116,7 +116,6 @@ const DefectsDetail = (props) => {
                     alignContent: "center",
                   }}
                 >
-                  {" "}
                   <Text
                     style={{
                       fontSize: 20,
