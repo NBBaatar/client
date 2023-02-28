@@ -24,7 +24,7 @@ export default (props) => {
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
-      quality: 0.5,
+      quality: 0.1,
     });
     //Getting Image Name
     const uri = image.assets[0].uri;
