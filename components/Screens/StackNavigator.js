@@ -109,7 +109,10 @@ import HebelLandScreen from "../HebelLand";
 import HebelDetailScreen from "../HebelDetail";
 import HebelUpdateScreen from "../HebelUpdate";
 import HebelAddScreen from "../HebelAdd";
-
+import CheckListScreen from "../CheckList";
+import CheckListDetailScreen from "../CheckListDetail";
+// import CheckListDetailFireScreen from "../CheckListDetailFire";
+// import CheckListEditScreen from "../CheckListEdit";
 const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
@@ -283,6 +286,13 @@ const ThirdStackNavigator = () => {
       <Stack.Screen name="Wardrobe add" component={WardrobeAddScreen} />
       <Stack.Screen name="Wardrobe" component={WardrobeScreen} />
       <Stack.Screen name="Wardrobe detail" component={WardrobeDetailScreen} />
+      <Stack.Screen name="Checklist" component={CheckListScreen} />
+      <Stack.Screen name="Checklist detail" component={CheckListDetailScreen} />
+      {/* <Stack.Screen
+        name="Checklist detail fire"
+        component={CheckListDetailFireScreen}
+      /> */}
+      {/* <Stack.Screen name="Checklist edit" component={CheckListEditScreen} /> */}
       <Stack.Screen name="Building Add" component={BuildingAddScreen} />
 
       <Stack.Screen name="Door frame land" component={FrameDoorLandScreen} />

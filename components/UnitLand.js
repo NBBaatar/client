@@ -19,6 +19,17 @@ const UnitLand = (props) => {
         <ScrollView>
           <View style={styles.view2}>
             <Pressable
+              style={styles.button}
+              onPress={() => {
+                props.navigation.navigate("Checklist", {
+                  id: props.route.params.id,
+                  unit: props.route.params.units.item,
+                });
+              }}
+            >
+              <Text style={styles.text_button}>ITP's</Text>
+            </Pressable>
+            <Pressable
               onPress={() => {
                 props.navigation.navigate("Water Proof land", {
                   id: props.route.params.id,
@@ -252,5 +263,36 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginHorizontal: 10,
     marginVertical: 10,
+  },
+  text_button: {
+    fontSize: 12,
+    lineHeight: 21,
+    letterSpacing: 0.5,
+    color: "white",
+    // paddingVertical: 5,
+    // paddingHorizontal: 50,
+  },
+  button: {
+    marginTop: "5%",
+    marginBottom: "5%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
+    elevation: 3,
+    height: 50,
+    width: 112,
+    backgroundColor: "#2e2c2b",
+    shadowColor: "grey",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
   },
 });
