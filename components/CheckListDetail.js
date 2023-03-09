@@ -130,7 +130,7 @@ const CheckListDetail = (props) => {
   const id = props.route.params.id;
   useEffect(() => {
     Alert.alert(
-      "Information",
+      "Warning",
       "Make sure check all Check items before this IPT!.",
       [
         {
