@@ -38,7 +38,7 @@ const CheckList = (props) => {
               }
             />
           </View>
-          {/* <View style={{ marginHorizontal: 10 }}>
+          <View style={{ marginHorizontal: 10 }}>
             <FormButton
               onPress={() => {
                 props.navigation.navigate("Checklist detail fire", {
@@ -49,7 +49,7 @@ const CheckList = (props) => {
               }}
               text={<Feather name="zap" size={20} color="#fff" />}
             />
-          </View> */}
+          </View>
         </View>
       </View>
     </SafeAreaView>

@@ -5,6 +5,9 @@ import {
   SafeAreaView,
   ScrollView,
   ActivityIndicator,
+  Modal,
+  Pressable,
+  TextInput,
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
@@ -12,9 +15,13 @@ import * as Animatable from "react-native-animatable";
 import { serverClient } from "../Constant";
 import axios from "axios";
 import FormSwitch from "./Forms/FormSwitch";
+import FormButton from "./Forms/FormButton";
 const CheckListDetail = (props) => {
   const [checkList, setCheckList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showModel, setShowModel] = useState(false);
+  const [email, setEmail] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [waterWorkship, setWaterWorkShip] = useState(false);
   const [waterBlueBoard, setWaterBlueBoard] = useState(false);
   const [waterPrimerBeenFloorWall, setWaterPrimerBeenFloorWall] =
@@ -122,6 +129,21 @@ const CheckListDetail = (props) => {
 
   const id = props.route.params.id;
   useEffect(() => {
+    Alert.alert(
+      "Information",
+      "Make sure check all Check items before this IPT!.",
+      [
+        {
+          text: "OK",
+          onPress: () => console.log("OK Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "Cancel",
+          onPress: () => props.navigation.popToTop(),
+        },
+      ]
+    );
     setLoading(true);
     axios
       .get(`${serverClient}/api/v1/units/${id}/checklist`)
@@ -134,6 +156,34 @@ const CheckListDetail = (props) => {
         setLoading(false);
       });
   }, []);
+  const sendEmail = () => {
+    setIsLoading(true);
+    axios
+      .post(
+        `${serverClient}/api/v1/checklist/${checkList?.[0]._id}}/water/send`,
+        {
+          email: email,
+        }
+      )
+      .then((response) => {
+        Alert.alert(`Email sent to ${email}`, [
+          {
+            text: "OK",
+            onPress: () => props.navigation.popToTop(),
+            style: "cancel",
+          },
+        ]);
+        setShowModel(!showModel);
+        setIsLoading(false);
+        setEmail(null);
+      })
+      .catch((err) => {
+        Alert.alert(err);
+        setIsLoading(false);
+        setShowModel(!showModel);
+        setEmail(null);
+      });
+  };
   const toggleWaterFlexibleSealantAllPipeBalcony = () => {
     setWaterFlexibleSealantAllPipeBalcony(!waterFlexibleSealantAllPipeBalcony);
   };
@@ -314,6 +364,130 @@ const CheckListDetail = (props) => {
   };
   const togglePrimerBeenAngleLaundry = () => {
     setWaterPrimerBeenAngleLaundry(!waterPrimerBeenAngleLaundry);
+  };
+
+  const updateDate = {
+    water: [
+      {
+        bathroom: [
+          {
+            workmanship: waterWorkship,
+            blueBoard: waterBlueBoard,
+            flexibleSealantAllJoint: waterFlexibleSealantAllJoint,
+            flexibleSealantAllAngle: waterflexibleSealantAllAngle,
+            flexibleSealantAllPipe: waterFlexibleSealantAllPipe,
+            primerBeenFloorWall: waterPrimerBeenFloorWall,
+            primerBeenAngle: waterPrimerBeenAngle,
+            pipe: waterPipe,
+            angle: waterAngle,
+            twoCoatsFloor: waterTwoCoatsFloor,
+            twoCoatsWall: waterTwoCoatsWall,
+            showerWall: waterShowerWall,
+            showerHeight: waterShowerHeight,
+            showerOutside: waterShowerOutside,
+            basinWall: waterBasinWall,
+            floodTest: waterFloodTest,
+            photoCheck: waterPhotoCheck,
+          },
+        ],
+        ensuite: [
+          {
+            workmanship: waterWorkshipEnsuit,
+            blueBoard: waterBlueBoardEnsuit,
+            flexibleSealantAllJoint: waterFlexibleSealantAllJointEnsuit,
+            flexibleSealantAllAngle: waterflexibleSealantAllAngleEnsuit,
+            flexibleSealantAllPipe: waterFlexibleSealantAllPipeEnsuit,
+            primerBeenFloorWall: waterPrimerBeenFloorWallEnsuit,
+            primerBeenAngle: waterPrimerBeenAngleEnsuit,
+            pipe: waterPipeEnsuit,
+            angle: waterAngleEnsuit,
+            twoCoatsFloor: waterTwoCoatsFloorEnsuit,
+            twoCoatsWall: waterTwoCoatsWallEnsuit,
+            showerWall: waterShowerWallEnsuit,
+            showerHeight: waterShowerHeightEnsuit,
+            showerOutside: waterShowerOutsideEnsuit,
+            basinWall: waterBasinWallEnsuit,
+            floodTest: waterFloodTestEnsuit,
+            photoCheck: waterPhotoCheckEnsuit,
+          },
+        ],
+        laundry: [
+          {
+            workmanship: waterWorkshipLaundry,
+            blueBoard: waterBlueBoardLaundry,
+            flexibleSealantAllJoint: waterFlexibleSealantAllJointLaundry,
+            flexibleSealantAllAngle: waterflexibleSealantAllAngleLaundry,
+            flexibleSealantAllPipe: waterFlexibleSealantAllPipeLaundry,
+            primerBeenFloorWall: waterPrimerBeenFloorWallLaundry,
+            primerBeenAngle: waterPrimerBeenAngleLaundry,
+            pipe: waterPipeLaundry,
+            angle: waterAngleLaundry,
+            twoCoatsFloor: waterTwoCoatsFloorLaundry,
+            twoCoatsWall: waterTwoCoatsWallLaundry,
+            Wall: waterShowerWallLaundry,
+            showerOutside: waterShowerOutsideLaundry,
+            laundryWall: waterBasinWallLaundry,
+            floodTest: waterFloodTestLaundry,
+            photoCheck: waterPhotoCheckLaundry,
+          },
+        ],
+        balcony: [
+          {
+            workmanship: waterWorkshipBalcony,
+            doorHob: waterBlueBoardBalcony,
+            flexibleSealant: waterPrimerBeenFloorWallBalcony,
+            primerBeen: waterFlexibleSealantAllJointBalcony,
+            twoCoats: waterPrimerBeenAngleBalcony,
+            wall: waterflexibleSealantAllAngleBalcony,
+            photoCheck: waterFlexibleSealantAllPipeBalcony,
+          },
+        ],
+      },
+    ],
+    fire: [
+      {
+        electric: checkList?.fire?.[0].electric,
+        plumbing: checkList?.fire?.[0].plumbing,
+        dryFireRoughIn: checkList?.fire?.[0].dryFireRoughIn,
+        sprinklerRoughIn: checkList?.fire?.[0].sprinklerRoughIn,
+        acRoughIn: checkList?.fire?.[0].acRoughIn,
+        plywoodSupports: checkList?.fire?.[0].plywoodSupports,
+        windowDoorAngle: checkList?.fire?.[0].windowDoorAngle,
+        HebelWalls: checkList?.fire?.[0].HebelWalls,
+        hebelCompliant: checkList?.fire?.[0].hebelCompliant,
+        flexibleSealant: checkList?.fire?.[0].flexibleSealant,
+        SpecifySealant: checkList?.fire?.[0].SpecifySealant,
+        InspectConcrete: checkList?.fire?.[0].InspectConcrete,
+        frontFireRate: checkList?.fire?.[0].frontFireRate,
+        pvc: checkList?.fire?.[0].pvc,
+        treated: checkList?.fire?.[0].treated,
+        penetratingCables: checkList?.fire?.[0].penetratingCables,
+        strippedThroughTheWall: checkList?.fire?.[0].strippedThroughTheWall,
+        cables: checkList?.fire?.[0].cables,
+        sprinklerPipes: checkList?.fire?.[0].sprinklerPipes,
+        sprinklerTreated: checkList?.fire?.[0].sprinklerTreated,
+        penetratingSlabs: checkList?.fire?.[0].penetratingSlabs,
+        certifiedFireCollar: checkList?.fire?.[0].certifiedFireCollar,
+        MarkModel: checkList?.fire?.[0].MarkModel,
+        AcPenetrations: checkList?.fire?.[0].AcPenetrations,
+        AcTreated: checkList?.fire?.[0].AcTreated,
+        photoCheck: checkList?.fire?.[0].photoCheck,
+      },
+    ],
+    unit: props.route.params.unit._id,
+    building: props.route.params.unit.building,
+  };
+  const updateHandle = () => {
+    axios
+      .put(`${serverClient}/api/v1/checklist/${checkList?.[0]._id}`, updateDate)
+      .then((response) => {
+        Alert.alert("Data updated!");
+        setShowModel(true);
+        // props.navigation.popToTop();
+      })
+      .catch((err) => {
+        Alert.alert(err.message);
+      });
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#36393e" }}>
@@ -846,6 +1020,86 @@ const CheckListDetail = (props) => {
                   onValueChange={toggleWaterFlexibleSealantAllPipeBalcony}
                 />
               </View>
+              <FormButton text="Update" onPress={updateHandle} />
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={showModel}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setShowModel(!showModel);
+                }}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    {isLoading ? (
+                      <View
+                        style={{
+                          flex: 1,
+                          justifyContent: "center",
+                          alignContent: "center",
+                        }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: 20,
+                            fontWeight: "100",
+                            textAlign: "center",
+                            marginBottom: 20,
+                          }}
+                        >
+                          Sending Email please wait...
+                        </Text>
+                        <ActivityIndicator size="large" color="black" />
+                      </View>
+                    ) : (
+                      <>
+                        <Text style={styles.modalText}>
+                          Please enter your Email:
+                        </Text>
+                        <TextInput
+                          style={{
+                            width: 200,
+                            height: 50,
+                            marginBottom: 10,
+                            borderColor: "black",
+                            borderBottomWidth: 1,
+                          }}
+                          placeholder="Enter your email"
+                          value={email}
+                          onChangeText={(value) => setEmail(value)}
+                        />
+                        <View
+                          style={{
+                            flexDirection: "row",
+                          }}
+                        >
+                          <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={sendEmail}
+                          >
+                            <Text style={styles.textStyle}>Send</Text>
+                          </Pressable>
+                          <Pressable
+                            style={[styles.button, styles.buttonCancel]}
+                            onPress={() => {
+                              setShowModel(false);
+                            }}
+                          >
+                            <Text style={styles.textStyle}>Cancel</Text>
+                          </Pressable>
+                        </View>
+                      </>
+                    )}
+                  </View>
+                </View>
+              </Modal>
+              <Pressable
+                style={[styles.button, styles.buttonOpen]}
+                onPress={() => setShowModel(true)}
+              >
+                <Text style={styles.textStyle}>Send as Email</Text>
+              </Pressable>
             </>
           )}
         </ScrollView>
@@ -885,5 +1139,69 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginHorizontal: 10,
     marginVertical: 10,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    width: 370,
+    height: 230,
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    marginTop: "5%",
+    marginBottom: "5%",
+    marginLeft: "5%",
+    marginRight: "5%",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
+    elevation: 3,
+    height: 50,
+    backgroundColor: "#2e2c2b",
+    shadowColor: "grey",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
+  },
+  buttonOpen: {
+    backgroundColor: "#2e2c2b",
+  },
+  buttonClose: {
+    backgroundColor: "#2e2c2b",
+  },
+  buttonCancel: {
+    backgroundColor: "#ff5252",
+  },
+  textStyle: {
+    fontSize: 14,
+    color: "white",
+    fontWeight: "300",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });
