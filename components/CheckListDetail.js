@@ -160,19 +160,13 @@ const CheckListDetail = (props) => {
     setIsLoading(true);
     axios
       .post(
-        `${serverClient}/api/v1/checklist/${checkList?.[0]._id}}/water/send`,
+        `${serverClient}/api/v1/checklist/${checkList?.[0]._id}/water/send`,
         {
           email: email,
         }
       )
       .then((response) => {
-        Alert.alert(`Email sent to ${email}`, [
-          {
-            text: "OK",
-            onPress: () => props.navigation.popToTop(),
-            style: "cancel",
-          },
-        ]);
+        Alert.alert(`Email sent to ${email}`);
         setShowModel(!showModel);
         setIsLoading(false);
         setEmail(null);
